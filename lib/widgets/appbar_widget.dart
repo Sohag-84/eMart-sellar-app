@@ -4,6 +4,7 @@ import 'package:intl/intl.dart' as intl;
 AppBar appbarWidget({required String title}) {
   return AppBar(
     automaticallyImplyLeading: false,
+    backgroundColor: white,
     actions: [
       Center(
         child: normalText(

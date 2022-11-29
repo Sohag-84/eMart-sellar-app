@@ -15,4 +15,5 @@ const appname = "eMart Seller App",
     loginTo = "Login to your account",
     rating = "Ratings",
     totalSells = "Total Sells",
-    popularProducts = "Popular Products";
+    popularProducts = "Popular Products",
+    unpaid = "Unpaid";

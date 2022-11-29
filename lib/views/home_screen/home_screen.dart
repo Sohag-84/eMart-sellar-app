@@ -3,7 +3,6 @@
 import 'package:e_mart_seller/const/const.dart';
 import 'package:e_mart_seller/widgets/appbar_widget.dart';
 import 'package:e_mart_seller/widgets/dashboard_button.dart';
-import 'package:intl/intl.dart' as intl;
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
