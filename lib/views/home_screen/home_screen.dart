@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:e_mart_seller/const/const.dart';
+import 'package:e_mart_seller/widgets/appbar_widget.dart';
 import 'package:e_mart_seller/widgets/dashboard_button.dart';
 import 'package:intl/intl.dart' as intl;
 
@@ -10,19 +11,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        actions: [
-          Center(
-            child: normalText(
-              text: intl.DateFormat('EEE, MMM d, ' 'yy').format(DateTime.now()),
-              color: purpleColor,
-            ),
-          ),
-          12.widthBox,
-        ],
-        title: boldText(text: dahsboard, color: fontGrey, size: 19),
-      ),
+      appBar: appbarWidget(title: dahsboard),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
