@@ -32,7 +32,9 @@ class LoginScreen extends StatelessWidget {
                   normalText(text: appname, size: 20)
                 ],
               ),
-              50.heightBox,
+              30.heightBox,
+              normalText(text: loginTo,size: 18),
+              10.heightBox,
               Column(
                 children: [
                   TextFormField(
