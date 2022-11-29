@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, sort_child_properties_last
 
 import 'package:e_mart_seller/const/const.dart';
 import 'package:e_mart_seller/widgets/appbar_widget.dart';
@@ -23,16 +23,37 @@ class ProductsScreen extends StatelessWidget {
             children: List.generate(
               50,
               (index) {
-                return ListTile(
-                  onTap: () {},
-                  leading: Image.asset(
-                    imgProduct,
-                    width: 100,
-                    height: 100,
-                    fit: BoxFit.cover,
+                return Card(
+                  child: ListTile(
+                    onTap: () {},
+                    leading: Image.asset(
+                      imgProduct,
+                      width: 100,
+                      height: 100,
+                      fit: BoxFit.cover,
+                    ),
+                    title: boldText(text: "Product title", color: fontGrey),
+                    subtitle: normalText(text: "\$40", color: darkGrey),
+                    trailing: VxPopupMenu(
+                      child: Icon(Icons.more_vert_rounded),
+                      menuBuilder: () => Column(
+                        children: List.generate(
+                          popupMenuTitles.length,
+                          (index) => Padding(
+                            padding: const EdgeInsets.all(12.0),
+                            child: Row(
+                              children: [
+                                Icon(popupMenuIconList[index]),
+                                13.widthBox,
+                                normalText(text: popupMenuTitles[index],color: darkGrey),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ).box.rounded.white.width(200).make(),
+                      clickType: VxClickType.singleClick,
+                    ),
                   ),
-                  title: boldText(text: "Product title", color: fontGrey),
-                  subtitle: normalText(text: "\$40", color: darkGrey),
                 );
               },
             ),

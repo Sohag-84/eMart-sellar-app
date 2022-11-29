@@ -16,4 +16,21 @@ const appname = "eMart Seller App",
     rating = "Ratings",
     totalSells = "Total Sells",
     popularProducts = "Popular Products",
-    unpaid = "Unpaid";
+    unpaid = "Unpaid",
+    messages = "Messages",
+    logout = "Logout",
+    featured = "Featured",
+    edit = "Edit",
+    remove = "Remove";
+
+//shop settings string
+const nameHint = "eg. vendor name",
+    shopDescHint = "Enter your shop description",
+    shopWebsiteHint = "eg. www.vendor.emart.com",
+    shopMobileHint = "eg. 01316255373",
+    shopAddressHint = "eg. ashulia model town",
+    description = "Description",
+    mobile = "Shop Mobile",
+    website = "Shop Website",
+    name = "Shop Name",
+    address = "Shop Address";
