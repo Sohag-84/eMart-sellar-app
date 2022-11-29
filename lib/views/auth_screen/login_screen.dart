@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:e_mart_seller/const/const.dart';
+import 'package:e_mart_seller/views/home.dart';
 import 'package:e_mart_seller/widgets/custom_button.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -77,12 +78,16 @@ class LoginScreen extends StatelessWidget {
                   ),
                   SizedBox(
                     width: context.screenWidth - 100,
-                    child: customButton(title: login, onPressed: () {}),
+                    child: customButton(
+                        title: login,
+                        onPressed: () {
+                          Get.to(() => Home());
+                        }),
                   ),
                 ],
               ).box.rounded.p12.white.make(),
               10.heightBox,
-              Center(child: normalText(text: anyProblem,color: lightGrey)),
+              Center(child: normalText(text: anyProblem, color: lightGrey)),
               Spacer(),
               Center(child: boldText(text: credit)),
             ],
