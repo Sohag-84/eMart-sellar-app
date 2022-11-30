@@ -21,7 +21,12 @@ const appname = "eMart Seller App",
     logout = "Logout",
     featured = "Featured",
     edit = "Edit",
-    remove = "Remove";
+    remove = "Remove",
+    save = "Save",
+    editProfile = "Edit Profile",
+    changeImage = "Change Image",
+    username = "Username",
+    confirmPassword = "Confirm Password";
 
 //shop settings string
 const nameHint = "eg. vendor name",
@@ -32,5 +37,5 @@ const nameHint = "eg. vendor name",
     description = "Description",
     mobile = "Shop Mobile",
     website = "Shop Website",
-    name = "Shop Name",
-    address = "Shop Address";
+    shopName = "Shop Name",
+    shopAddress = "Shop Address";
