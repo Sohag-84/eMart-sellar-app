@@ -2,10 +2,12 @@
 
 import 'package:e_mart_seller/const/const.dart';
 
-Widget customTextField({required label, required hintText, controller}) {
+Widget customTextField(
+    {required label, required hintText, controller, isDesc = false}) {
   return TextFormField(
     controller: controller,
     style: TextStyle(color: white),
+    maxLines: isDesc ? 4 : 1,
     decoration: InputDecoration(
       label: normalText(text: label),
       hintText: hintText,

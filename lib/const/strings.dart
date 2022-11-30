@@ -38,4 +38,5 @@ const nameHint = "eg. vendor name",
     mobile = "Shop Mobile",
     website = "Shop Website",
     shopName = "Shop Name",
-    shopAddress = "Shop Address";
+    shopAddress = "Shop Address",
+    shopSetting = "Shop Settings";
