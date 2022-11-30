@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:e_mart_seller/const/const.dart';
+import 'package:e_mart_seller/views/messages_screen/messages_screen.dart';
 import 'package:e_mart_seller/views/profile_screen/edit_profile.dart';
 import 'package:e_mart_seller/views/shop_screen/shop_settings_screen.dart';
 
@@ -51,6 +52,9 @@ class ProfileScreen extends StatelessWidget {
                       case 0:
                         Get.to(() => ShopSettingScreen());
                         break;
+                      case 1:
+                        Get.to(() => MessagesScreen());
+                        break;
                       default:
                     }
                   },
@@ -62,7 +66,7 @@ class ProfileScreen extends StatelessWidget {
                 ),
               ),
             ),
-          )
+          ),
         ],
       ),
     );
