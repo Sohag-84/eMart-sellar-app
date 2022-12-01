@@ -26,7 +26,8 @@ const appname = "eMart Seller App",
     editProfile = "Edit Profile",
     changeImage = "Change Image",
     username = "Username",
-    confirmPassword = "Confirm Password";
+    confirmPassword = "Confirm Password",
+    chat = "Chat";
 
 //shop settings string
 const nameHint = "eg. vendor name",

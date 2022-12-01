@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:e_mart_seller/const/const.dart';
+import 'package:e_mart_seller/views/messages_screen/chat_screen.dart';
 
 class MessagesScreen extends StatelessWidget {
   const MessagesScreen({Key? key}) : super(key: key);
@@ -9,6 +10,7 @@ class MessagesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        iconTheme: IconThemeData(color: darkGrey),
         title: boldText(text: messages, size: 16, color: fontGrey),
       ),
       body: Padding(
@@ -19,7 +21,9 @@ class MessagesScreen extends StatelessWidget {
             children: List.generate(
               20,
               (index) => ListTile(
-                onTap: () {},
+                onTap: () {
+                  Get.to(() => ChatScreen());
+                },
                 leading: CircleAvatar(
                   backgroundColor: purpleColor,
                   child: Icon(Icons.person, color: white),
