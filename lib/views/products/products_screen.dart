@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, sort_child_properties_last
 
 import 'package:e_mart_seller/const/const.dart';
+import 'package:e_mart_seller/views/products/product_details.dart';
 import 'package:e_mart_seller/widgets/appbar_widget.dart';
 
 class ProductsScreen extends StatelessWidget {
@@ -25,7 +26,9 @@ class ProductsScreen extends StatelessWidget {
               (index) {
                 return Card(
                   child: ListTile(
-                    onTap: () {},
+                    onTap: () {
+                      Get.to(() => ProductDetails());
+                    },
                     leading: Image.asset(
                       imgProduct,
                       width: 100,
@@ -45,7 +48,9 @@ class ProductsScreen extends StatelessWidget {
                               children: [
                                 Icon(popupMenuIconList[index]),
                                 13.widthBox,
-                                normalText(text: popupMenuTitles[index],color: darkGrey),
+                                normalText(
+                                    text: popupMenuTitles[index],
+                                    color: darkGrey),
                               ],
                             ),
                           ),
