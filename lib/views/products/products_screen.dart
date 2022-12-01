@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, sort_child_properties_last
 
 import 'package:e_mart_seller/const/const.dart';
+import 'package:e_mart_seller/views/products/add_product.dart';
 import 'package:e_mart_seller/views/products/product_details.dart';
 import 'package:e_mart_seller/widgets/appbar_widget.dart';
 
@@ -13,7 +14,9 @@ class ProductsScreen extends StatelessWidget {
       appBar: appbarWidget(title: products),
       floatingActionButton: FloatingActionButton(
         backgroundColor: purpleColor,
-        onPressed: () {},
+        onPressed: () {
+          Get.to(() => AddProduct());
+        },
         child: Icon(Icons.add),
       ),
       body: Padding(
