@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:e_mart_seller/const/const.dart';
+import 'package:e_mart_seller/views/orders_screen/order_details.dart';
 import 'package:e_mart_seller/widgets/appbar_widget.dart';
 import 'package:intl/intl.dart' as intl;
 
@@ -20,7 +21,9 @@ class OrdersScreen extends StatelessWidget {
               50,
               (index) {
                 return ListTile(
-                  onTap: () {},
+                  onTap: () {
+                    Get.to(() => OrderDetailsScreen());
+                  },
                   tileColor: textfieldGrey,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
@@ -45,14 +48,15 @@ class OrdersScreen extends StatelessWidget {
                       ),
                       Row(
                         children: [
-                          Icon(Icons.payment,color: fontGrey),
+                          Icon(Icons.payment, color: fontGrey),
                           10.widthBox,
-                          boldText(text: unpaid,color: red)
+                          boldText(text: unpaid, color: red)
                         ],
                       ),
                     ],
                   ),
-                  trailing: boldText(text: "\$250",color: purpleColor,size: 16),
+                  trailing:
+                      boldText(text: "\$250", color: purpleColor, size: 16),
                 ).box.margin(EdgeInsets.only(bottom: 8)).make();
               },
             ),

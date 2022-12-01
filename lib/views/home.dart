@@ -3,7 +3,7 @@
 import 'package:e_mart_seller/const/const.dart';
 import 'package:e_mart_seller/controllers/home_controller.dart';
 import 'package:e_mart_seller/views/home_screen/home_screen.dart';
-import 'package:e_mart_seller/views/orders_screen/Order_screen.dart';
+import 'package:e_mart_seller/views/orders_screen/order_screen.dart';
 import 'package:e_mart_seller/views/products/products_screen.dart';
 import 'package:e_mart_seller/views/profile_screen/profile_screen.dart';
 
