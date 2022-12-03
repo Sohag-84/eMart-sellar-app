@@ -2,6 +2,7 @@
 
 import 'package:e_mart_seller/const/const.dart';
 import 'package:e_mart_seller/views/auth_screen/login_screen.dart';
+import 'package:e_mart_seller/views/home.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 void main() async {
@@ -10,8 +11,32 @@ void main() async {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  var isLoggedIn = false;
+
+  checkUser() async {
+    firebaseAuth.authStateChanges().listen((event) {
+      if (event == null && mounted) {
+        isLoggedIn = false;
+      } else {
+        isLoggedIn = true;
+      }
+      setState(() {});
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    checkUser();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +49,7 @@ class MyApp extends StatelessWidget {
           elevation: 0.0,
         ),
       ),
-      home: LoginScreen(),
+      home: isLoggedIn ? Home() : LoginScreen(),
     );
   }
 }
