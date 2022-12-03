@@ -1,6 +1,8 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:e_mart_seller/const/const.dart';
+import 'package:e_mart_seller/controllers/auth_controller.dart';
+import 'package:e_mart_seller/views/auth_screen/login_screen.dart';
 import 'package:e_mart_seller/views/messages_screen/messages_screen.dart';
 import 'package:e_mart_seller/views/profile_screen/edit_profile.dart';
 import 'package:e_mart_seller/views/shop_screen/shop_settings_screen.dart';
@@ -21,7 +23,12 @@ class ProfileScreen extends StatelessWidget {
                 Get.to(() => EditProfileScreen());
               },
               icon: Icon(Icons.edit)),
-          TextButton(onPressed: () {}, child: normalText(text: logout))
+          TextButton(
+              onPressed: () async {
+                await Get.find<AuthController>().signoutMethod();
+                Get.offAll(() => LoginScreen());
+              },
+              child: normalText(text: logout))
         ],
       ),
       body: Column(
