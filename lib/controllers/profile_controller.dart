@@ -23,6 +23,13 @@ class ProfileController extends GetxController {
   var oldPasswordController = TextEditingController();
   var newPasswordController = TextEditingController();
 
+  //shop setting text field controller
+  var shopNameController = TextEditingController();
+  var shopAdressController = TextEditingController();
+  var shopMobileController = TextEditingController();
+  var shopWebsiteController = TextEditingController();
+  var shopDescriptionController = TextEditingController();
+
   changeImage() async {
     try {
       final img = await ImagePicker().pickImage(
@@ -69,5 +76,20 @@ class ProfileController extends GetxController {
     }).catchError((error) {
       print(error.toString());
     });
+  }
+
+
+  updatedShop({required shopName, required shopAddress, required shopMobile,required shopWebsite,required shopDescription,}) async {
+    var store = firestore.collection(vendorCollection).doc(currentUser!.uid);
+    await store.set({
+      'shop_name': shopName,
+      'shop_address': shopAddress,
+      'shop_mobile': shopMobile,
+      'shop_website': shopWebsite,
+      'shop_description': shopDescription,
+    }, SetOptions(merge: true));
+
+    //for button loading
+    isLoading(false);
   }
 }
