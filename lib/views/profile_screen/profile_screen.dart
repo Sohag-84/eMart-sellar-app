@@ -3,6 +3,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_mart_seller/const/const.dart';
 import 'package:e_mart_seller/controllers/auth_controller.dart';
+import 'package:e_mart_seller/controllers/profile_controller.dart';
 import 'package:e_mart_seller/services/firestore_services.dart';
 import 'package:e_mart_seller/views/auth_screen/login_screen.dart';
 import 'package:e_mart_seller/views/messages_screen/messages_screen.dart';
@@ -15,6 +16,8 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var controller = Get.put(ProfileController());
+
     return Scaffold(
         backgroundColor: purpleColor,
         appBar: AppBar(
@@ -23,7 +26,9 @@ class ProfileScreen extends StatelessWidget {
           actions: [
             IconButton(
                 onPressed: () {
-                  Get.to(() => EditProfileScreen());
+                  Get.to(() => EditProfileScreen(
+                        username: controller.snapshot['vendor_name'],
+                      ));
                 },
                 icon: Icon(Icons.edit)),
             TextButton(
@@ -42,7 +47,7 @@ class ProfileScreen extends StatelessWidget {
             if (!snapshot.hasData) {
               return loadingIndicator(circleColor: white);
             } else {
-              var data = snapshot.data!.docs[0];
+              controller.snapshot = snapshot.data!.docs[0];
               return Column(
                 children: [
                   ListTile(
@@ -51,8 +56,10 @@ class ProfileScreen extends StatelessWidget {
                         .roundedFull
                         .clip(Clip.antiAlias)
                         .make(),
-                    title: boldText(text: "${data['vendor_name']}"),
-                    subtitle: normalText(text: "${data['email']}"),
+                    title:
+                        boldText(text: "${controller.snapshot['vendor_name']}"),
+                    subtitle:
+                        normalText(text: "${controller.snapshot['email']}"),
                   ),
                   10.heightBox,
                   Padding(
