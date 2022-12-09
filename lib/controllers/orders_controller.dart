@@ -1,6 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_mart_seller/const/const.dart';
 
 class OrdersController extends GetxController {
+  var confirmed = false.obs;
+  var onDelivery = false.obs;
+  var delivered = false.obs;
+
   var ordersList = [];
 
   getOders({required data}) {
@@ -11,5 +16,12 @@ class OrdersController extends GetxController {
       }
       print("Product list$ordersList");
     }
+  }
+
+  changeStatus({required title, required status, required docId}) async {
+    var store = firestore.collection(orderCollection).doc(docId);
+    await store.set({
+      title: status,
+    }, SetOptions(merge: true));
   }
 }
