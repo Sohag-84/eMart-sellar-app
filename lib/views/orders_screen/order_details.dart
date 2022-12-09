@@ -5,7 +5,8 @@ import 'package:e_mart_seller/views/orders_screen/components/order_place_details
 import 'package:e_mart_seller/widgets/custom_button.dart';
 
 class OrderDetailsScreen extends StatelessWidget {
-  const OrderDetailsScreen({Key? key}) : super(key: key);
+  final dynamic data;
+  const OrderDetailsScreen({Key? key, required this.data}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +56,7 @@ class OrderDetailsScreen extends StatelessWidget {
                       ),
                       SwitchListTile(
                         activeColor: green,
-                        value: false,
+                        value: true,
                         onChanged: (value) {},
                         title: boldText(
                           text: "On Delivery",
@@ -64,7 +65,7 @@ class OrderDetailsScreen extends StatelessWidget {
                       ),
                       SwitchListTile(
                         activeColor: green,
-                        value: false,
+                        value: true,
                         onChanged: (value) {},
                         title: boldText(
                           text: "Delivered",
