@@ -1,12 +1,27 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:e_mart_seller/const/const.dart';
+import 'package:e_mart_seller/controllers/orders_controller.dart';
 import 'package:e_mart_seller/views/orders_screen/components/order_place_details.dart';
 import 'package:e_mart_seller/widgets/custom_button.dart';
+import 'package:intl/intl.dart' as intl;
 
-class OrderDetailsScreen extends StatelessWidget {
+class OrderDetailsScreen extends StatefulWidget {
   final dynamic data;
   const OrderDetailsScreen({Key? key, required this.data}) : super(key: key);
+
+  @override
+  State<OrderDetailsScreen> createState() => _OrderDetailsScreenState();
+}
+
+class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
+  var controller = Get.put(OrdersController());
+
+  @override
+  void initState() {
+    super.initState();
+    controller.getOders(data: widget.data);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -19,6 +34,7 @@ class OrderDetailsScreen extends StatelessWidget {
         height: 60,
         width: context.screenWidth,
         child: customButton(
+          isLoading: false,
           title: "Confirm Order",
           onPressed: () {},
           color: green,
@@ -86,14 +102,17 @@ class OrderDetailsScreen extends StatelessWidget {
                 orderPlaceDetails(
                   title1: "Order Code",
                   title2: "Shipping Method",
-                  detail1: "data['order_code']",
-                  detail2: "data['shipping_method']",
+                  detail1: "${widget.data['order_code']}",
+                  detail2: "${widget.data['shipping_method']}",
                 ),
                 orderPlaceDetails(
-                    title1: "Order Date",
-                    title2: "Payment Method",
-                    detail1: "${DateTime.now()}",
-                    detail2: "data['payment_method'],"),
+                  title1: "Order Date",
+                  title2: "Payment Method",
+                  detail1: intl.DateFormat()
+                      .add_yMd()
+                      .format(widget.data['order_date'].toDate()),
+                  detail2: "${widget.data['payment_method']}",
+                ),
                 orderPlaceDetails(
                   title1: "Payment Status",
                   title2: "Delivery Status",
@@ -113,14 +132,22 @@ class OrderDetailsScreen extends StatelessWidget {
                           children: [
                             boldText(
                                 text: "Shipping Address", color: purpleColor),
-                            "Name:{data['order_by_name']}".text.make(),
-                            "Email: {data['order_by_email']}".text.make(),
-                            "Address: {data['order_by_address']}".text.make(),
-                            "City: {data['order_by_city']}".text.make(),
+                            "Name:${widget.data['order_by_name']}".text.make(),
+                            "Email: ${widget.data['order_by_email']}"
+                                .text
+                                .make(),
+                            "Address: ${widget.data['order_by_address']}"
+                                .text
+                                .make(),
+                            "City: ${widget.data['order_by_city']}".text.make(),
                             "Country: Bangladesh".text.make(),
-                            "State: {data['order_by_state']}".text.make(),
-                            "Phone: data['order_by_phone_number']}".text.make(),
-                            "Postal code: {data['order_by_postalcode']}"
+                            "State: ${widget.data['order_by_state']}"
+                                .text
+                                .make(),
+                            "Phone: ${widget.data['order_by_phone_number']}"
+                                .text
+                                .make(),
+                            "Postal code: ${widget.data['order_by_postalcode']}"
                                 .text
                                 .make(),
                           ],
@@ -132,8 +159,14 @@ class OrderDetailsScreen extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             boldText(
-                                text: "Total Amount: ", color: purpleColor),
-                            boldText(text: "\$500", color: red, size: 16),
+                              text: "Total Amount: ",
+                              color: purpleColor,
+                            ),
+                            boldText(
+                              text: "\$${widget.data['total_amount']}",
+                              color: red,
+                              size: 16,
+                            ),
                           ],
                         ),
                       ),
@@ -149,14 +182,15 @@ class OrderDetailsScreen extends StatelessWidget {
             ListView(
               shrinkWrap: true,
               physics: NeverScrollableScrollPhysics(),
-              children: List.generate(5, (index) {
+              children: List.generate(controller.ordersList.length, (index) {
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     orderPlaceDetails(
-                      title1: "orderData['title']",
-                      title2: "orderData['total_price']",
-                      detail1: "Quantity: {orderData['quantity']}",
+                      title1: "${controller.ordersList[index]['title']}",
+                      title2: "${controller.ordersList[index]['total_price']}",
+                      detail1:
+                          "Quantity: ${controller.ordersList[index]['quantity']}",
                       detail2: 'Refundable',
                     ),
                     Padding(
@@ -164,7 +198,9 @@ class OrderDetailsScreen extends StatelessWidget {
                       child: Container(
                         height: 20,
                         width: 30,
-                        color: purpleColor,
+                        color: Color(
+                          int.parse("${controller.ordersList[index]['color']}"),
+                        ),
                       ),
                     ),
                     Divider()

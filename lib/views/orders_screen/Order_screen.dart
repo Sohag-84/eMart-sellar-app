@@ -31,11 +31,10 @@ class OrdersScreen extends StatelessWidget {
                     data.length,
                     (index) {
                       var time = data[index]['order_date'].toDate();
-
                       return ListTile(
                         onTap: () {
                           Get.to(() => OrderDetailsScreen(
-                                data: data,
+                                data: data[index],
                               ));
                         },
                         tileColor: textfieldGrey,
@@ -55,8 +54,9 @@ class OrdersScreen extends StatelessWidget {
                                 ),
                                 10.widthBox,
                                 boldText(
-                                  text:
-                                      intl.DateFormat().add_yMd().format(time),
+                                  text: intl.DateFormat()
+                                      .add_yMd()
+                                      .format(time),
                                   color: fontGrey,
                                 ),
                               ],
