@@ -21,4 +21,11 @@ class FirestroeServices {
         .where('vendors', arrayContains: uid)
         .snapshots();
   }
+
+  static getProducts({required uid}) {
+    return firestore
+        .collection(productCollection)
+        .where('vendor_id', isEqualTo: uid)
+        .snapshots();
+  }
 }
