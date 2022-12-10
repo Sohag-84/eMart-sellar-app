@@ -42,7 +42,7 @@ class ProductsScreen extends StatelessWidget {
                     return Card(
                       child: ListTile(
                         onTap: () {
-                          Get.to(() => ProductDetails());
+                          Get.to(() => ProductDetails(data: data[index],));
                         },
                         leading: Image.network(
                           data[index]['p_images'][0],
