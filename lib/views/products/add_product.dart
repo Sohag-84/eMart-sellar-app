@@ -76,11 +76,28 @@ class AddProduct extends StatelessWidget {
               Divider(color: white),
               boldText(text: 'Choose product images:'),
               10.heightBox,
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: List.generate(
-                    3, (index) => productImages(label: "${index + 1}")),
-              ),
+              Obx(() {
+                return Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: List.generate(
+                    3,
+                    (index) => controller.pImageList[index] != null
+                        ? Image.file(
+                            controller.pImageList[index],
+                            height: 100,
+                            width: 100,
+                            fit: BoxFit.fill,
+                          ).onTap(() {
+                            controller.pickImage(index: index);
+                          })
+                        : productImages(label: "${index + 1}").onTap(
+                            () {
+                              controller.pickImage(index: index);
+                            },
+                          ),
+                  ),
+                );
+              }),
               5.heightBox,
               normalText(text: "*First image will your product image"),
               Divider(color: white),
