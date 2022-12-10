@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:e_mart_seller/const/const.dart';
+import 'package:e_mart_seller/controllers/products_controller.dart';
 import 'package:e_mart_seller/views/products/components/product_drop_down.dart';
 import 'package:e_mart_seller/views/products/components/product_imege.dart';
 import 'package:e_mart_seller/widgets/custom_textfield.dart';
@@ -10,11 +11,13 @@ class AddProduct extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var controller = Get.find<ProductsController>();
+
     return Scaffold(
       backgroundColor: purpleColor,
       appBar: AppBar(
         iconTheme: IconThemeData(color: white),
-        title: boldText(text: "Product Details", color: white, size: 16),
+        title: boldText(text: "Add Product", color: white, size: 16),
         actions: [
           TextButton(
             onPressed: () {},
@@ -30,6 +33,7 @@ class AddProduct extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              5.heightBox,
               customTextField(label: "Product Name", hintText: "eg. BMW"),
               10.heightBox,
               customTextField(
@@ -42,9 +46,19 @@ class AddProduct extends StatelessWidget {
               10.heightBox,
               customTextField(label: "Quantity", hintText: "eg. 100"),
               10.heightBox,
-              productDropDown(hint: "Choose Category"),
+              productDropDown(
+                hint: "Choose Category",
+                list: controller.categoryList,
+                dropValue: controller.categoryValue,
+                controller: controller,
+              ),
               10.heightBox,
-              productDropDown(hint: "Choose Subcategory"),
+              productDropDown(
+                hint: "Choose Subcategory",
+                list: controller.subcategoryList,
+                dropValue: controller.subCategoryValue,
+                controller: controller,
+              ),
               10.heightBox,
               Divider(color: white),
               boldText(text: 'Choose product images:'),
@@ -64,18 +78,19 @@ class AddProduct extends StatelessWidget {
                 spacing: 8,
                 runSpacing: 8,
                 children: List.generate(
-                    9,
-                    (index) => Stack(
-                          alignment: Alignment.center,
-                          children: [
-                            VxBox()
-                                .color(Vx.randomColor)
-                                .size(50, 50)
-                                .roundedFull
-                                .make(),
-                            Icon(Icons.done, color: white),
-                          ],
-                        )),
+                  9,
+                  (index) => Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      VxBox()
+                          .color(Vx.randomColor)
+                          .size(50, 50)
+                          .roundedFull
+                          .make(),
+                      Icon(Icons.done, color: white),
+                    ],
+                  ),
+                ),
               ),
             ],
           ),

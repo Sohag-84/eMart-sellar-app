@@ -2,6 +2,7 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_mart_seller/const/const.dart';
+import 'package:e_mart_seller/controllers/products_controller.dart';
 import 'package:e_mart_seller/services/firestore_services.dart';
 import 'package:e_mart_seller/views/products/add_product.dart';
 import 'package:e_mart_seller/views/products/product_details.dart';
@@ -13,11 +14,15 @@ class ProductsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var controller = Get.put(ProductsController());
+
     return Scaffold(
       appBar: appbarWidget(title: products),
       floatingActionButton: FloatingActionButton(
         backgroundColor: purpleColor,
-        onPressed: () {
+        onPressed: () async {
+          await controller.getCategories();
+          controller.populateCategoryList();
           Get.to(() => AddProduct());
         },
         child: Icon(Icons.add),
@@ -42,7 +47,9 @@ class ProductsScreen extends StatelessWidget {
                     return Card(
                       child: ListTile(
                         onTap: () {
-                          Get.to(() => ProductDetails(data: data[index],));
+                          Get.to(() => ProductDetails(
+                                data: data[index],
+                              ));
                         },
                         leading: Image.network(
                           data[index]['p_images'][0],
