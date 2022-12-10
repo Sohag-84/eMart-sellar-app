@@ -34,17 +34,30 @@ class AddProduct extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               5.heightBox,
-              customTextField(label: "Product Name", hintText: "eg. BMW"),
+              customTextField(
+                label: "Product Name",
+                hintText: "eg. BMW",
+                controller: controller.pNameController,
+              ),
               10.heightBox,
               customTextField(
                 label: "Description",
                 hintText: "eg. nice product",
                 isDesc: true,
+                controller: controller.pDescController,
               ),
               10.heightBox,
-              customTextField(label: "Price", hintText: "eg. 100"),
+              customTextField(
+                label: "Price",
+                hintText: "eg. 100",
+                controller: controller.pPriceController,
+              ),
               10.heightBox,
-              customTextField(label: "Quantity", hintText: "eg. 100"),
+              customTextField(
+                label: "Quantity",
+                hintText: "eg. 100",
+                controller: controller.pQuanityController,
+              ),
               10.heightBox,
               productDropDown(
                 hint: "Choose Category",
@@ -74,24 +87,31 @@ class AddProduct extends StatelessWidget {
               10.heightBox,
               boldText(text: "Choose product color:"),
               10.heightBox,
-              Wrap(
-                spacing: 8,
-                runSpacing: 8,
-                children: List.generate(
-                  9,
-                  (index) => Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      VxBox()
-                          .color(Vx.randomColor)
-                          .size(50, 50)
-                          .roundedFull
-                          .make(),
-                      Icon(Icons.done, color: white),
-                    ],
+              Obx(() {
+                return Wrap(
+                  spacing: 8,
+                  runSpacing: 8,
+                  children: List.generate(
+                    12,
+                    (index) => Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        VxBox()
+                            .color(Vx.randomColor)
+                            .size(45, 45)
+                            .roundedFull
+                            .make()
+                            .onTap(() {
+                          controller.selectedColorIndex.value = index;
+                        }),
+                        controller.selectedColorIndex.value == index
+                            ? Icon(Icons.done, color: white)
+                            : SizedBox(),
+                      ],
+                    ),
                   ),
-                ),
-              ),
+                );
+              }),
             ],
           ),
         ),
