@@ -124,4 +124,9 @@ class ProductsController extends GetxController {
       'is_featured': false,
     }, SetOptions(merge: true));
   }
+
+  //remove product
+  removeProduct({required docId}) {
+    firestore.collection(productCollection).doc(docId).delete();
+  }
 }

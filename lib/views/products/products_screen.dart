@@ -105,16 +105,33 @@ class ProductsScreen extends StatelessWidget {
                                     ),
                                   ],
                                 ).onTap(() {
-                                  if (data[index]['is_featured'] == true) {
-                                    controller.removeFeatured(
-                                      docId: data[index].id,
-                                    );
-                                    Fluttertoast.showToast(msg: 'Removed');
-                                  } else {
-                                    controller.addFeatured(
-                                      docId: data[index].id,
-                                    );
-                                    Fluttertoast.showToast(msg: 'Added');
+                                  switch (i) {
+                                    case 0:
+                                      if (data[index]['is_featured'] == true) {
+                                        controller.removeFeatured(
+                                          docId: data[index].id,
+                                        );
+                                        Fluttertoast.showToast(msg: 'Removed');
+                                      } else {
+                                        controller.addFeatured(
+                                          docId: data[index].id,
+                                        );
+                                        Fluttertoast.showToast(msg: 'Added');
+                                      }
+                                      break;
+
+                                    case 1:
+                                      break;
+
+                                    case 2:
+                                      controller.removeProduct(
+                                        docId: data[index].id,
+                                      );
+                                      Fluttertoast.showToast(
+                                        msg: 'Product removed',
+                                      );
+                                      break;
+                                    default:
                                   }
                                 }),
                               ),
