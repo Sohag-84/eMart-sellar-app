@@ -108,4 +108,20 @@ class ProductsController extends GetxController {
     isLoading(false);
     Fluttertoast.showToast(msg: "Product uploaded");
   }
+
+  //add featrued
+  addFeatured({required docId}) async {
+    await firestore.collection(productCollection).doc(docId).set({
+      'featured_id': currentUser!.uid,
+      'is_featured': true,
+    }, SetOptions(merge: true));
+  }
+
+  //remove featrued
+  removeFeatured({required docId}) async {
+    await firestore.collection(productCollection).doc(docId).set({
+      'featured_id': "",
+      'is_featured': false,
+    }, SetOptions(merge: true));
+  }
 }

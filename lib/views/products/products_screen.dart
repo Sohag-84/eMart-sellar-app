@@ -8,6 +8,7 @@ import 'package:e_mart_seller/views/products/add_product.dart';
 import 'package:e_mart_seller/views/products/product_details.dart';
 import 'package:e_mart_seller/widgets/appbar_widget.dart';
 import 'package:e_mart_seller/widgets/loading_indicator.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class ProductsScreen extends StatelessWidget {
   const ProductsScreen({Key? key}) : super(key: key);
@@ -69,7 +70,7 @@ class ProductsScreen extends StatelessWidget {
                             ),
                             10.widthBox,
                             boldText(
-                              text: data[index]['p_images'] == true
+                              text: data[index]['is_featured'] == true
                                   ? "Featured"
                                   : "",
                               color: green,
@@ -81,17 +82,41 @@ class ProductsScreen extends StatelessWidget {
                           menuBuilder: () => Column(
                             children: List.generate(
                               popupMenuTitles.length,
-                              (index) => Padding(
+                              (i) => Padding(
                                 padding: const EdgeInsets.all(12.0),
                                 child: Row(
                                   children: [
-                                    Icon(popupMenuIconList[index]),
+                                    Icon(
+                                      popupMenuIconList[i],
+                                      color: data[index]['featured_id'] ==
+                                                  currentUser!.uid &&
+                                              i == 0
+                                          ? green
+                                          : darkGrey,
+                                    ),
                                     13.widthBox,
                                     normalText(
-                                        text: popupMenuTitles[index],
-                                        color: darkGrey),
+                                      text: data[index]['featured_id'] ==
+                                                  currentUser!.uid &&
+                                              i == 0
+                                          ? "Remove feature"
+                                          : popupMenuTitles[i],
+                                      color: darkGrey,
+                                    ),
                                   ],
-                                ),
+                                ).onTap(() {
+                                  if (data[index]['is_featured'] == true) {
+                                    controller.removeFeatured(
+                                      docId: data[index].id,
+                                    );
+                                    Fluttertoast.showToast(msg: 'Removed');
+                                  } else {
+                                    controller.addFeatured(
+                                      docId: data[index].id,
+                                    );
+                                    Fluttertoast.showToast(msg: 'Added');
+                                  }
+                                }),
                               ),
                             ),
                           ).box.rounded.white.width(200).make(),
