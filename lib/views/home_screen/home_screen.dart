@@ -36,8 +36,8 @@ class HomeScreen extends StatelessWidget {
                       children: [
                         dashboardButton(
                           context: context,
-                          title: dahsboard,
-                          quantity: "79",
+                          title: products,
+                          quantity: "${data.length}",
                           icon: icProducts,
                         ),
                         dashboardButton(
